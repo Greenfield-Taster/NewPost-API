@@ -1,32 +1,38 @@
 <template>
-  <div>
-    <h2>Oblast</h2>
-    <select @change="selectCity" v-model="region">
-      <option value="" disabled selected>Область</option>
-      <option v-for="region in regions" :key="region.Ref" :value="region.Ref">
-        {{ region.Description }}
-      </option>
-    </select>
+  <div class="wrapper">
+    <div>
+      <h2>Область</h2>
+      <select @change="selectCity" v-model="region" class="input">
+        <option value="" disabled selected>Область</option>
+        <option v-for="region in regions" :key="region.Ref" :value="region.Ref">
+          {{ region.Description }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <h2>Місто</h2>
+      <select class="input" @change="selectPostOffice" v-model="city">
+        <option value="" disabled selected>City</option>
+        <option v-for="city in cities" :key="city.CityID">
+          {{ city.Description }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <h2>Відділення пошти</h2>
+      <select v-model="postOffice" class="input">
+        <option value="" disabled selected>Post office</option>
+        <option v-for="office in postOffices" :key="office.Ref">
+          {{ office.Description }}
+        </option>
+      </select>
+    </div>
+    <div class="text">
+      <h2>You selected:</h2>
+      <p>{{ city }}</p>
+      <p>{{ postOffice }}</p>
+    </div>
   </div>
-  <div>
-    <h2>City</h2>
-    <select @change="selectPostOffice" v-model="city">
-      <option value="" disabled selected>City</option>
-      <option v-for="city in cities" :key="city.CityID">
-        {{ city.Description }}
-      </option>
-    </select>
-  </div>
-  <div>
-    <h2>Post office</h2>
-    <select v-model="postOffice">
-      <option value="" disabled selected>Post office</option>
-      <option v-for="office in postOffices" :key="office.Ref">
-        {{ office.Description }}
-      </option>
-    </select>
-  </div>
-  <div>You selected {{ city }}, {{ postOffice }}</div>
 </template>
 
 <script setup>
